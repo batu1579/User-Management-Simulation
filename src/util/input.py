@@ -4,8 +4,8 @@
 Author: BATU1579
 CreateDate: 2022-06-28 22:30:19
 LastEditor: BATU1579
-LastTime: 2022-06-28 23:55:56
-FilePath: \\src\\util\\controller.py
+LastTime: 2022-06-29 01:18:16
+FilePath: \\src\\util\\input.py
 Description: 交互控制器
 '''
 from abc import ABCMeta, abstractmethod
@@ -14,11 +14,15 @@ from pynput.keyboard import Listener, Key
 
 
 class InputController(metaclass=ABCMeta):
+    '''
+    输入基类
+    '''
     def __init__(self, title: str, data: list[str] = None):
         self.title = title
         self.data = data
 
     def show_title(self):
+        system("cls")
         print(f"{'=' * 15} {self.title} {'=' * 15}\n")
 
     @abstractmethod
@@ -26,13 +30,19 @@ class InputController(metaclass=ABCMeta):
 
 
 class Form(InputController):
-    def get_input(self):
+    '''
+    表单输入
+    '''
+    def get_input(self) -> dict[str, str]:
         self.show_title()
         return {question: input(f"[{question}]: ") for question in self.data}
 
 
 class SingleChoice(InputController):
-    def get_input(self):
+    '''
+    单选输入
+    '''
+    def get_input(self) -> int:
         pitch_on = 0
 
         self._show_choice(pitch_on)
@@ -53,7 +63,9 @@ class SingleChoice(InputController):
                 pitch_on -= 1
             if key == Key.down:
                 pitch_on += 1
-            if key == Key.enter or key == Key.esc:
+            if key == Key.enter:
+                # 捕获回车
+                input()
                 return False
             check()
             self._show_choice(pitch_on)
@@ -65,9 +77,6 @@ class SingleChoice(InputController):
 
     def _show_choice(self, pitch_on: int):
         assert 0 <= pitch_on < len(self.data), "pitch on number is out of range"
-
-        # 显示选项
-        system("cls")
 
         self.show_title()
 
@@ -86,7 +95,10 @@ def main():
     controller = SingleChoice("title", [
         "A", "B", "C", "D", "E", "F"
     ])
-    controller.get_input()
+    print(controller.get_input())
+
+    controller = Form("title", ['username', 'password'])
+    print(controller.get_input())
 
 
 if __name__ == "__main__":
