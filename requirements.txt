@@ -1,1 +1,9 @@
+autopep8==1.6.0
+flake8==4.0.1
 json5==0.9.8
+mccabe==0.6.1
+pycodestyle==2.8.0
+pyflakes==2.4.0
+pynput==1.7.6
+six==1.16.0
+toml==0.10.2
