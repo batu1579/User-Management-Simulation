@@ -4,7 +4,7 @@
 Author: BATU1579
 CreateDate: 2022-06-28 22:30:19
 LastEditor: BATU1579
-LastTime: 2022-06-29 01:52:56
+LastTime: 2022-06-29 02:34:56
 FilePath: \\src\\util\\input.py
 Description: 交互控制器
 '''
@@ -83,6 +83,9 @@ class SingleChoice(InputController):
         assert 0 <= pitch_on < len(
             self.data), "pitch on number is out of range"
 
+        print('''Tips: Use the up and down arrow keys to select.
+        Press Enter to enter.
+        ''')
         if type(self.data[0]) == dict:
             for index, choice in enumerate(self.data):
                 if index == pitch_on:
@@ -99,8 +102,8 @@ class SingleChoice(InputController):
 
 
 class Confirm(SingleChoice):
-    def __init__(self, title: str, info: str, confirm_action: Callable,
-                 cancel_action: Callable):
+    def __init__(self, title: str, info: str, confirm_action: Callable = None,
+                 cancel_action: Callable = None):
         super().__init__(title, ['confirm', 'cancel'])
         self.info = info
         self.confirm_action = confirm_action
@@ -114,9 +117,9 @@ class Confirm(SingleChoice):
     def get_input(self) -> int:
         result = super().get_input()
 
-        if result == 0:
+        if result == 0 and self.confirm_action is not None:
             self.confirm_action()
-        else:
+        elif result != 0 and self.cancel_action is not None:
             self.cancel_action()
 
         return result
