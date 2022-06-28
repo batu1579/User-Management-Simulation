@@ -4,7 +4,7 @@
 Author: BATU1579
 CreateDate: 2022-06-28 16:51:07
 LastEditor: BATU1579
-LastTime: 2022-06-29 03:25:04
+LastTime: 2022-06-29 04:05:11
 FilePath: \\src\\module\\user_control.py
 Description:
 '''
@@ -59,7 +59,7 @@ class UserControlCore(object):
 
         return user['role']
 
-    def register(self, username: str, password: str, role: int = 0) -> int:
+    def register(self, username: str, password: str) -> int:
         # 检查用户是否已经存在
         if username in self.user_data:
             raise UserExistsException(username)
@@ -67,13 +67,13 @@ class UserControlCore(object):
         # 添加用户
         self.user_data[username] = {
             **self.hash_password(password),
-            'role': role,
+            'role': 1,
         }
 
         # 更新数据
         update_file(FILE_DIR, self.user_data)
 
-        return role
+        return 1
 
     @staticmethod
     def hash_password(password: str, salt: str = None) -> dict:
@@ -138,7 +138,7 @@ class UserController:
     def __register(self):
 
         def callback():
-            form = Form("Register", ["username", "password", "role"])
+            form = Form("Register", ["username", "password"])
             return self.core.register(**form.get_input())
 
         return self.__framework(callback)
