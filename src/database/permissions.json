@@ -1,0 +1,7 @@
+{
+    "browser": [0, 1, 2],
+    "choose": [1, 2],
+    "view_order": [1],
+    "pay": [1],
+    "set_discount": [2]
+}
