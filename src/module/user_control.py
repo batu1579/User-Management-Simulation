@@ -13,7 +13,7 @@ from hashlib import md5
 from typing import Callable
 
 from util.json_operation import load_file, update_file
-from util.input import Form, Confirm, SingleChoice
+from util.input import Form, Confirm, Select
 
 FILE_DIR = ".\\src\\database\\password.json"
 
@@ -98,7 +98,7 @@ class UserController:
 
     def loop(self) -> int:
         while True:
-            select = SingleChoice("Operation", ["login", "register", "exit"])
+            select = Select("Operation", ["login", "register", "exit"])
             selection = select.get_input()
 
             if selection == 2:
