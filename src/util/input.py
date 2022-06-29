@@ -4,7 +4,7 @@
 Author: BATU1579
 CreateDate: 2022-06-28 22:30:19
 LastEditor: BATU1579
-LastTime: 2022-06-29 06:05:28
+LastTime: 2022-06-29 08:38:15
 FilePath: \\src\\util\\input.py
 Description: 交互控制器
 '''
@@ -21,7 +21,7 @@ class InputController(metaclass=ABCMeta):
     输入基类
     '''
 
-    def __init__(self, title: str, data: list[str] = None):
+    def __init__(self, title: str, data: List[str] = None):
         self.title = title
         self.data = data
 
