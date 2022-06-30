@@ -4,7 +4,7 @@
 Author: BATU1579
 CreateDate: 2022-06-28 22:30:19
 LastEditor: BATU1579
-LastTime: 2022-06-29 08:38:15
+LastTime: 2022-06-29 08:45:19
 FilePath: \\src\\util\\input.py
 Description: 交互控制器
 '''
@@ -164,6 +164,7 @@ class MultiPageSelect(InputController):
             self.data[current_page]), "pitch on number is out of range"
 
         print('''Tips: Use the up and down arrow keys to select.
+    Use the left and right arrows to turn pages
         Press Enter to enter.
         ''')
         for index, choice in enumerate(self.data[current_page]):
