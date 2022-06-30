@@ -4,7 +4,7 @@
 Author: BATU1579
 CreateDate: 2022-06-28 22:30:19
 LastEditor: BATU1579
-LastTime: 2022-06-29 08:45:19
+LastTime: 2022-06-30 12:05:19
 FilePath: \\src\\util\\input.py
 Description: 交互控制器
 '''
@@ -171,7 +171,8 @@ class MultiPageSelect(InputController):
             print(f"{' => ' if index == pitch_on else '    '} {choice}")
 
     def show_pages(self, current_page: int):
-        print(f"\n{'=' * 15} {current_page + 1} of {len(self.data)} pages {'=' * 15}")
+        print(
+            f"\n{'=' * 15} {current_page + 1} of {len(self.data)} pages {'=' * 15}")
 
     def show_all(self, pitch_on: int, current_page: int):
         self.show_title()

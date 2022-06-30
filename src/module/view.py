@@ -4,7 +4,7 @@
 Author: BATU1579
 CreateDate: 2022-06-29 05:39:10
 LastEditor: BATU1579
-LastTime: 2022-06-30 11:11:29
+LastTime: 2022-06-30 12:25:49
 FilePath: \\src\\module\\view.py
 Description:
 '''
@@ -26,18 +26,21 @@ class GoodsView:
     def __init__(self, data: List[dict] = None, title: str = None):
         self.data = data if data else []
         self.title = title if title else 'Goods'
-        self.view = MultiPageSelect(self.title, self.data)
 
     def show_all(self):
-        if not self.data:
-            raise EmptyView()
-        self.view.get_input()
+        self.check_data_empty()
+        view = MultiPageSelect(self.title, self.data)
+        view.get_input()
 
     def select_product(self) -> dict:
-        if not self.data:
-            raise EmptyView()
-        index = self.view.get_input()
+        self.check_data_empty()
+        view = MultiPageSelect(self.title, self.data)
+        index = view.get_input()
         return self.data[index]
+
+    def check_data_empty(self):
+        if not self.data:
+            raise EmptyView(self.title)
 
 
 class ProductView:
@@ -81,9 +84,15 @@ class ProductView:
         if confirm.get_input() == 1:
             return None
 
+        self.orders.check_data_empty()
+
+        sum_price = 0
+        for product in self.orders.data:
+            product = list(product.values())[0]
+            sum_price += product['price']
         confirm = Confirm(
             "Congratulations",
-            "You have paid this order successfully !"
+            f"You paid $ {sum_price} successfully !"
         )
         confirm.get_input()
         exit()

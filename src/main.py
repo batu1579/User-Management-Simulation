@@ -4,7 +4,7 @@
 Author: BATU1579
 CreateDate: 2022-06-28 15:28:17
 LastEditor: BATU1579
-LastTime: 2022-06-29 08:17:40
+LastTime: 2022-06-30 12:18:20
 FilePath: \\src\\main.py
 Description:
 '''
@@ -22,7 +22,7 @@ role: int = controller.loop()
 info = []
 for key, value in load_file(".\\src\\database\\company.json").items():
     info.append(f"{key} - {value}")
-confirm = Confirm("Company Info", '\n     '.join(info), cancel_action=exit)
+confirm = Confirm("Company Info", '\n     '.join(info))
 confirm.get_input()
 
 # 显示产品列表
