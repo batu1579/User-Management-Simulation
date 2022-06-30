@@ -1,7 +1,43 @@
 {
-    "browser": [0, 1, 2],
-    "choose": [1, 2],
-    "view_order": [1],
-    "pay": [1],
-    "set_discount": [2]
+    "browser": {
+        "name": "View Products",
+        "role": [
+            0,
+            1,
+            2
+        ]
+    },
+    "choose": {
+        "name": "Select Products",
+        "role": [
+            1,
+            2
+        ]
+    },
+    "view_order": {
+        "name": "View Order",
+        "role": [
+            1
+        ]
+    },
+    "pay": {
+        "name": "Pay",
+        "role": [
+            1
+        ]
+    },
+    "set_discount": {
+        "name": "Set discount",
+        "role": [
+            2
+        ]
+    },
+    "exit": {
+        "name": "Exit",
+        "role": [
+            0,
+            1,
+            2
+        ]
+    }
 }

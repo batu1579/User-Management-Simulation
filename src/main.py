@@ -16,7 +16,7 @@ from util.input import Confirm
 
 # 登录
 controller = UserController()
-controller.loop()
+role: int = controller.loop()
 
 # 显示公司信息
 info = []
@@ -26,5 +26,5 @@ confirm = Confirm("Company Info", '\n     '.join(info), cancel_action=exit)
 confirm.get_input()
 
 # 显示产品列表
-view = ProductView()
+view = ProductView(role)
 view.loop()
